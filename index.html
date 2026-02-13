@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day, Urooziiii!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #e6e6fa, #dda0dd);
+            color: #4b0082;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background: #8a2be2;
+            padding: 20px;
+            font-size: 2em;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .photo {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        .paragraph {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            color: #8a2be2;
+            font-size: 2em;
+            animation: float 5s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .question {
+            display: block;
+            font-size: 2em;
+            margin: 50px 0;
+        }
+        .buttons {
+            margin: 20px 0;
+        }
+        button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .yes {
+            background: #8a2be2;
+            color: white;
+        }
+        .no {
+            background: #ccc;
+            color: #666;
+        }
+        .main-content {
+            display: none;
+        }
+        .question-section {
+            display: block;
+        }
+        .game-section {
+            display: none;
+            font-size: 1.5em;
+        }
+        .game-area {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        .click-heart {
+            position: absolute;
+            font-size: 3em;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .score {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .memory-game {
+            display: none;
+            font-size: 1.5em;
+        }
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 300px;
+            margin: 20px auto;
+        }
+        .card {
+            width: 60px;
+            height: 60px;
+            background: #8a2be2;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 2em;
+            transition: transform 0.3s;
+        }
+        .card.flipped {
+            background: white;
+            color: #8a2be2;
+        }
+        .card.matched {
+            background: #dda0dd;
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    <div id="question-section" class="question-section">
+        <div id="q1" class="question">
+            <p>Do you love me?</p>
+            <div class="buttons">
+                <button class="yes" onclick="answerQ1('yes')">Yes</button>
+                <button class="no" onclick="answerQ1('no')">No</button>
+            </div>
+        </div>
+        <div id="q2" class="question" style="display: none;">
+            <p>Will you be my Valentine?</p>
+            <div class="buttons">
+                <button class="yes" onclick="answerQ2('yes')">Yes</button>
+                <button class="no" onclick="answerQ2('no')">No</button>
+            </div>
+        </div>
+        <div id="q3" class="question" style="display: none;">
+            <p>Do you miss me?</p>
+            <div class="buttons">
+                <button class="yes" onclick="answerQ3('yes')">Yes</button>
+                <button class="no" onclick="answerQ3('no')">No</button>
+            </div>
+        </div>
+        <div id="q4" class="question" style="display: none;">
+            <p>How much do you love me?</p>
+            <div class="buttons">
+                <button onclick="answerQ4('not')">Not at all</button>
+                <button onclick="answerQ4('little')">A little</button>
+                <button onclick="answerQ4('lot')">A lot</button>
+                <button class="yes" onclick="answerQ4('endlessly')">Endlessly</button>
+            </div>
+        </div>
+        <div id="q5" class="question" style="display: none;">
+            <p>Will you always be mine?</p>
+            <div class="buttons">
+                <button class="yes" onclick="answerQ5('yes')">Yes</button>
+                <button class="no" onclick="answerQ5('no')">No</button>
+            </div>
+        </div>
+    </div>
+    <div id="game-section" class="game-section">
+        <p>Game 1: Prove your love! Click on 10 hearts to collect them and show how much you care. 💜</p>
+        <div class="score">Hearts collected: <span id="score">0</span>/10</div>
+        <div class="game-area" id="game-area"></div>
+    </div>
+    <div id="memory-section" class="memory-game">
+        <p>Game 2: Memory Challenge! Flip the cards to match pairs of hearts. Match all 6 pairs to win! 💖</p>
+        <div class="memory-grid" id="memory-grid"></div>
+    </div>
+    <div id="main-content" class="main-content">
+        <header>
+            Happy Valentine's Day, Urooziiii! 💖
+        </header>
+        <div class="container">
+            <h2>A Special Message from Safffuu</h2>
+            <img src="https://i.postimg.cc/nh8KjBq1/1721410a-ca40-4267-8ee6-a5b55f49a76a.jpg" alt="Our Photo 1" class="photo">
+            <p class="paragraph">
+                My dearest Urooziiii, as Valentine's Day begins, I wanted to create something special just for you—a little corner of the internet filled with all the love and memories we've shared. From the moment we met accidentally in Delhi, you've been the spark that lights up my world, like a gentle sunrise after a long night. Who would have thought that two people who started as enemies would end up in a beautiful relationship for 8 months? I remember our first date, walking hand in hand under the stars, laughing about silly things and dreaming about our future together. You've always had this incredible way of making me feel seen and cherished, even on the toughest days. Your smile, Urooziiii, is my favorite sight, brighter than any fireworks or rainbow. I love how you giggle at my jokes, even the bad ones, and how you support me in everything I do. This day, let's celebrate us—the way we fit together like puzzle pieces, the adventures we've had, and the endless possibilities ahead. You're not just my girlfriend; you're my best friend, my confidant, my everything. I promise to cherish you every day, to hold your hand through storms and dances, and to remind you how utterly amazing you are. Happy Valentine's Day, my love. Here's to many more memories, filled with joy, laughter, and unbreakable love.
+            </p>
+            <img src="https://i.postimg.cc/ryNDTHJx/IMG-1816-compressed.jpg" alt="Our Photo 2" class="photo">
+            <p class="paragraph">
+                Urooziiii, thinking about you fills my heart with warmth, like a cozy blanket on a chilly evening. We've been through so much together during our 8 months in Delhi—late-night talks that turned into early mornings, spontaneous trips that became our favorite stories, and quiet moments where just being near you was enough. I adore your kindness, your strength, and the way you light up a room with your presence. You're the one who makes me want to be a better person every single day. Remember that time we baked cookies and ended up with flour everywhere? Or when we danced in the rain, not caring about getting wet? Those are the moments that define us, Urooziiii—the carefree, loving, adventurous us. This Valentine's Day, I want to shower you with affection, from handwritten notes to surprise hugs. But more than that, I want you to know that my love for you grows stronger with each passing day. You're my forever, my dream come true, and I can't imagine life without you by my side. Let's make this day unforgettable, filled with cuddles, kisses, and all the sweetness you deserve. I love you more than words can say, my sweet Urooziiii.
+            </p>
+            <img src="https://i.postimg.cc/rp4pPZs5/IMG-1393-compressed.jpg" alt="Our Photo 3" class="photo">
+            <p class="paragraph">
+                To my beloved Urooziiii, every day with you feels like a new chapter in the most beautiful story ever written. Your eyes sparkle with a magic that captivates me, and your voice is the melody I hum to myself when we're apart. We've built a world together in Delhi, one filled with trust, passion, and endless fun, even though we started as enemies who met by accident. I cherish the way you understand me, even when I don't understand myself, and how you encourage me to chase my dreams. You're my rock, my inspiration, and the love of my life. As Valentine's Day unfolds, let's reminisce about our favorite memories—the picnics in the park, the movie nights where we quote lines for hours, and the quiet evenings spent just talking about everything and nothing. I promise to always be there for you, to listen, to love, and to grow with you. You're the reason I wake up smiling, Urooziiii, and I can't wait to create even more beautiful moments together. This is just the beginning of our forever. Happy Valentine's, my heart's desire. I love you endlessly.
+            </p>
+        </div>
+    </div>
+    <script>
+        let score = 0;
+        const targetScore = 10;
+        let flippedCards = [];
+        let matchedPairs = 0;
+        const totalPairs = 6;
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💜';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            document.getElementById('hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 500);
+
+        function answerQ1(answer) {
+            if (answer === 'yes') {
+                document.getElementById('q1').style.display = 'none';
+                document.getElementById('q2').style.display = 'block';
+            }
+        }
+
+        function answerQ2(answer) {
+            if (answer === 'yes') {
+                document.getElementById('q2').style.display = 'none';
+                document.getElementById('q3').style.display = 'block';
+            }
+        }
+
+        function answerQ3(answer) {
+            if (answer === 'yes') {
+                document.getElementById('q3').style.display = 'none';
+                document.getElementById('q4').style.display = 'block';
+            }
+        }
+
+        function answerQ4(answer) {
+            if (answer === 'endlessly') {
+                document.getElementById('q4').style.display = 'none';
+                document.getElementById('q5').style.display = 'block';
+            }
+        }
+
+        function answerQ5(answer) {
+            if (answer === 'yes') {
+                document.getElementById('question-section').style.display = 'none';
+                document.getElementById('game-section').style.display = 'block';
+                startGame1();
+            }
+        }
+
+        function startGame1() {
+            const gameArea = document.getElementById('game-area');
+            for (let i = 0; i < 15; i++) { // Create multiple hearts
+                const clickHeart = document.createElement('div');
+                clickHeart.className = 'click-heart';
+                clickHeart.innerHTML = '💜';
+                clickHeart.style.left = Math.random() * 90 + '%';
+                clickHeart.style.top = Math.random() * 90 + '%';
+                clickHeart.onclick = function() {
+                    score++;
+                    document.getElementById('score').textContent = score;
+                    this.remove();
+                    if (score >= targetScore) {
+                        document.getElementById('game-section').style.display = 'none';
+                        document.getElementById('memory-section').style.display = 'block';
+                        startMemoryGame();
+                    }
+                };
+                gameArea.appendChild(clickHeart);
+            }
+        }
+
+        function startMemoryGame() {
+            const grid = document.getElementById('memory-grid');
+            const cards = [];
+            const symbols = ['💖', '💕', '💞', '💓', '💗', '💘'];
+            const cardSymbols = [...symbols, ...symbols]; // Duplicate for pairs
+            cardSymbols.sort(() => Math.random() - 0.5); // Shuffle
+
+            cardSymbols.forEach(symbol => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.dataset.symbol = symbol;
+                card.onclick = flipCard;
+                grid.appendChild(card);
+                cards.push(card);
+            });
+        }
+
+        function flipCard() {
+            if (flippedCards.length < 2 && !this.classList.contains('flipped')) {
+                this.classList.add('flipped');
+                this.textContent = this.dataset.symbol;
+                flippedCards.push(this);
+
+                if (flippedCards.length === 2) {
+                    setTimeout(checkMatch, 1000);
+                }
+            }
+        }
+
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            if (card1.dataset.symbol === card2.dataset.symbol) {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                matchedPairs++;
+                if (matchedPairs === totalPairs) {
+                    document.getElementById('memory-section').style.display = 'none';
+                    document.getElementById('main-content').style.display = 'block';
+                }
+            } else {
+                card1.classList.remove('flipped');
+                card1.textContent = '';
+                card2.classList.remove('flipped');
+                card2.textContent = '';
+            }
+            flippedCards = [];
+        }
+    </script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
